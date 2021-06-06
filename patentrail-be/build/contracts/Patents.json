@@ -2,6 +2,19 @@
   "contractName": "Patents",
   "abi": [
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "PatentAdded",
+      "type": "event"
+    },
+    {
       "constant": true,
       "inputs": [],
       "name": "numPatents",
@@ -63,21 +76,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"newPatent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"numPatents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"patents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol\":\"Patents\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol\":{\"keccak256\":\"0xdc1d727e692b1b176081403ba984656dafb31719ab88eb7536e05ce3d336ebdc\",\"urls\":[\"bzz-raw://72c48d9f9e05fdd858ed9015b98ef6b6d98094d577723f5b0b1219af2945f12c\",\"dweb:/ipfs/QmbkuGa59ug4tSMULBw6wVg9o1Mx3exFwEjWPcvN2GYGW5\"]}},\"version\":1}",
-  "bytecode": "0x60806040526000805534801561001457600080fd5b5061048e806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80633d4ec00414610046578063645846b914610101578063f422bc681461011f575b600080fd5b6100ff6004803603602081101561005c57600080fd5b810190808035906020019064010000000081111561007957600080fd5b82018360208201111561008b57600080fd5b803590602001918460018302840111640100000000831117156100ad57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610200565b005b6101096102cc565b6040518082815260200191505060405180910390f35b61014b6004803603602081101561013557600080fd5b81019080803590602001909291905050506102d2565b60405180848152602001806020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828103825284818151815260200191508051906020019080838360005b838110156101c35780820151818401526020810190506101a8565b50505050905090810190601f1680156101f05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b604051806060016040528060005481526020018281526020013373ffffffffffffffffffffffffffffffffffffffff16815250600160008054815260200190815260200160002060008201518160000155602082015181600101908051906020019061026d9291906103b4565b5060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550905050600080815480929190600101919050555050565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103845780601f1061035957610100808354040283529160200191610384565b820191906000526020600020905b81548152906001019060200180831161036757829003601f168201915b5050505050908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905083565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103f557805160ff1916838001178555610423565b82800160010185558215610423579182015b82811115610422578251825591602001919060010190610407565b5b5090506104309190610434565b5090565b61045691905b8082111561045257600081600090555060010161043a565b5090565b9056fea265627a7a723158206b318850121d4ead3b9f29b674aa140815062bd985dc145d53811b438203a34a64736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80633d4ec00414610046578063645846b914610101578063f422bc681461011f575b600080fd5b6100ff6004803603602081101561005c57600080fd5b810190808035906020019064010000000081111561007957600080fd5b82018360208201111561008b57600080fd5b803590602001918460018302840111640100000000831117156100ad57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610200565b005b6101096102cc565b6040518082815260200191505060405180910390f35b61014b6004803603602081101561013557600080fd5b81019080803590602001909291905050506102d2565b60405180848152602001806020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828103825284818151815260200191508051906020019080838360005b838110156101c35780820151818401526020810190506101a8565b50505050905090810190601f1680156101f05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b604051806060016040528060005481526020018281526020013373ffffffffffffffffffffffffffffffffffffffff16815250600160008054815260200190815260200160002060008201518160000155602082015181600101908051906020019061026d9291906103b4565b5060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550905050600080815480929190600101919050555050565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103845780601f1061035957610100808354040283529160200191610384565b820191906000526020600020905b81548152906001019060200180831161036757829003601f168201915b5050505050908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905083565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103f557805160ff1916838001178555610423565b82800160010185558215610423579182015b82811115610422578251825591602001919060010190610407565b5b5090506104309190610434565b5090565b61045691905b8082111561045257600081600090555060010161043a565b5090565b9056fea265627a7a723158206b318850121d4ead3b9f29b674aa140815062bd985dc145d53811b438203a34a64736f6c63430005100032",
-  "sourceMap": "25:350:1:-;;;151:1;126:26;;25:350;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:350:1;;;;;;;",
-  "deployedSourceMap": "25:350:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:350:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;199:173;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;199:173:1;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;199:173:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;199:173:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;199:173:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;199:173:1;;;;;;;;;;;;;;;:::i;:::-;;126:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;156:38;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;156:38:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;156:38:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;199:173;281:68;;;;;;;;295:10;;281:68;;;;313:12;281:68;;;;333:10;281:68;;;;;259:7;:19;267:10;;259:19;;;;;;;;;;;:90;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;355:10;;:12;;;;;;;;;;;;;199:173;:::o;126:26::-;;;;:::o;156:38::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;25:350::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity ^0.5.0;\n\ncontract Patents {\n\n  struct Patent {\n    uint id;\n    string description;\n    address owner;\n  }\n\n  uint public numPatents = 0;\n  mapping(uint => Patent) public patents;\n\n  function newPatent(string memory _description) public {\n    patents[numPatents] = Patent(\n      numPatents,\n      _description,\n      msg.sender\n    );\n    numPatents++;\n  } \n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"PatentAdded\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"newPatent\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"numPatents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"patents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol\":\"Patents\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol\":{\"keccak256\":\"0x583629690c791ec24353930d4c2150162fc493dd46fc8be68e9e9facc22a6b6a\",\"urls\":[\"bzz-raw://90e2df0998086b4b9aa75057ce73f42ff04f5036c48f75599cc607b82430c738\",\"dweb:/ipfs/QmfRy8uy2Q2PrdxBbBCG3RwJT4UfTB1xxb5Mq8fBvVrzUg\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805534801561001457600080fd5b506104c7806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80633d4ec00414610046578063645846b914610101578063f422bc681461011f575b600080fd5b6100ff6004803603602081101561005c57600080fd5b810190808035906020019064010000000081111561007957600080fd5b82018360208201111561008b57600080fd5b803590602001918460018302840111640100000000831117156100ad57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610200565b005b610109610305565b6040518082815260200191505060405180910390f35b61014b6004803603602081101561013557600080fd5b810190808035906020019092919050505061030b565b60405180848152602001806020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828103825284818151815260200191508051906020019080838360005b838110156101c35780820151818401526020810190506101a8565b50505050905090810190601f1680156101f05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b604051806060016040528060005481526020018281526020013373ffffffffffffffffffffffffffffffffffffffff16815250600160008054815260200190815260200160002060008201518160000155602082015181600101908051906020019061026d9291906103ed565b5060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555090505060008081548092919060010191905055507fe4d1601483f14fd363bcb881847d666123c50d69d92ccb76c7f2a0cb0405a5076000546040518082815260200191505060405180910390a150565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103bd5780601f10610392576101008083540402835291602001916103bd565b820191906000526020600020905b8154815290600101906020018083116103a057829003601f168201915b5050505050908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905083565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061042e57805160ff191683800117855561045c565b8280016001018555821561045c579182015b8281111561045b578251825591602001919060010190610440565b5b509050610469919061046d565b5090565b61048f91905b8082111561048b576000816000905550600101610473565b5090565b9056fea265627a7a72315820b789e5b17847116a40b1c9024cbb0d19882a4ea08206973af0557e5235a56d7364736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80633d4ec00414610046578063645846b914610101578063f422bc681461011f575b600080fd5b6100ff6004803603602081101561005c57600080fd5b810190808035906020019064010000000081111561007957600080fd5b82018360208201111561008b57600080fd5b803590602001918460018302840111640100000000831117156100ad57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610200565b005b610109610305565b6040518082815260200191505060405180910390f35b61014b6004803603602081101561013557600080fd5b810190808035906020019092919050505061030b565b60405180848152602001806020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828103825284818151815260200191508051906020019080838360005b838110156101c35780820151818401526020810190506101a8565b50505050905090810190601f1680156101f05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b604051806060016040528060005481526020018281526020013373ffffffffffffffffffffffffffffffffffffffff16815250600160008054815260200190815260200160002060008201518160000155602082015181600101908051906020019061026d9291906103ed565b5060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555090505060008081548092919060010191905055507fe4d1601483f14fd363bcb881847d666123c50d69d92ccb76c7f2a0cb0405a5076000546040518082815260200191505060405180910390a150565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103bd5780601f10610392576101008083540402835291602001916103bd565b820191906000526020600020905b8154815290600101906020018083116103a057829003601f168201915b5050505050908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905083565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061042e57805160ff191683800117855561045c565b8280016001018555821561045c579182015b8281111561045b578251825591602001919060010190610440565b5b509050610469919061046d565b5090565b61048f91905b8082111561048b576000816000905550600101610473565b5090565b9056fea265627a7a72315820b789e5b17847116a40b1c9024cbb0d19882a4ea08206973af0557e5235a56d7364736f6c63430005100032",
+  "sourceMap": "25:420:1:-;;;188:1;163:26;;25:420;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:420:1;;;;;;;",
+  "deployedSourceMap": "25:420:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:420:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;236:207;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;236:207:1;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;236:207:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;236:207:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;236:207:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;236:207:1;;;;;;;;;;;;;;;:::i;:::-;;163:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;193:38;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;193:38:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;193:38:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;236:207;318:68;;;;;;;;332:10;;318:68;;;;350:12;318:68;;;;370:10;318:68;;;;;296:7;:19;304:10;;296:19;;;;;;;;;;;:90;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;392:10;;:12;;;;;;;;;;;;;415:23;427:10;;415:23;;;;;;;;;;;;;;;;;;236:207;:::o;163:26::-;;;;:::o;193:38::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;25:420::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract Patents {\n\n  struct Patent {\n    uint id;\n    string description;\n    address owner;\n  }\n\n  event PatentAdded(uint256 index);\n\n  uint public numPatents = 0;\n  mapping(uint => Patent) public patents;\n\n  function newPatent(string memory _description) public {\n    patents[numPatents] = Patent(\n      numPatents,\n      _description,\n      msg.sender\n    );\n    numPatents++;\n    emit PatentAdded(numPatents);\n  }\n}",
   "sourcePath": "/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol",
   "ast": {
     "absolutePath": "/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol",
     "exportedSymbols": {
       "Patents": [
-        69
+        77
       ]
     },
-    "id": 70,
+    "id": 78,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -97,9 +110,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 69,
+        "id": 77,
         "linearizedBaseContracts": [
-          69
+          77
         ],
         "name": "Patents",
         "nodeType": "ContractDefinition",
@@ -190,17 +203,59 @@
             ],
             "name": "Patent",
             "nodeType": "StructDefinition",
-            "scope": 69,
+            "scope": 77,
             "src": "47:75:1",
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 45,
+            "name": "PatentAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43,
+                  "indexed": false,
+                  "name": "index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 45,
+                  "src": "144:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "144:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "143:15:1"
+            },
+            "src": "126:33:1"
+          },
+          {
             "constant": false,
-            "id": 44,
+            "id": 48,
             "name": "numPatents",
             "nodeType": "VariableDeclaration",
-            "scope": 69,
-            "src": "126:26:1",
+            "scope": 77,
+            "src": "163:26:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -208,10 +263,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 42,
+              "id": 46,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "126:4:1",
+              "src": "163:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -220,14 +275,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 43,
+              "id": 47,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "151:1:1",
+              "src": "188:1:1",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_0_by_1",
@@ -239,11 +294,11 @@
           },
           {
             "constant": false,
-            "id": 48,
+            "id": 52,
             "name": "patents",
             "nodeType": "VariableDeclaration",
-            "scope": 69,
-            "src": "156:38:1",
+            "scope": 77,
+            "src": "193:38:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -251,30 +306,30 @@
               "typeString": "mapping(uint256 => struct Patents.Patent)"
             },
             "typeName": {
-              "id": 47,
+              "id": 51,
               "keyType": {
-                "id": 45,
+                "id": 49,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "164:4:1",
+                "src": "201:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "156:23:1",
+              "src": "193:23:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patent_$41_storage_$",
                 "typeString": "mapping(uint256 => struct Patents.Patent)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 46,
+                "id": 50,
                 "name": "Patent",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 41,
-                "src": "172:6:1",
+                "src": "209:6:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Patent_$41_storage_ptr",
                   "typeString": "struct Patents.Patent"
@@ -286,14 +341,14 @@
           },
           {
             "body": {
-              "id": 67,
+              "id": 75,
               "nodeType": "Block",
-              "src": "253:119:1",
+              "src": "290:153:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 62,
+                    "id": 66,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -302,26 +357,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 53,
+                        "id": 57,
                         "name": "patents",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 48,
-                        "src": "259:7:1",
+                        "referencedDeclaration": 52,
+                        "src": "296:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patent_$41_storage_$",
                           "typeString": "mapping(uint256 => struct Patents.Patent storage ref)"
                         }
                       },
-                      "id": 55,
+                      "id": 59,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 54,
+                        "id": 58,
                         "name": "numPatents",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 44,
-                        "src": "267:10:1",
+                        "referencedDeclaration": 48,
+                        "src": "304:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -332,7 +387,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "259:19:1",
+                      "src": "296:19:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Patent_$41_storage",
                         "typeString": "struct Patents.Patent storage ref"
@@ -345,12 +400,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 57,
+                          "id": 61,
                           "name": "numPatents",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 44,
-                          "src": "295:10:1",
+                          "referencedDeclaration": 48,
+                          "src": "332:10:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -358,12 +413,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 58,
+                          "id": 62,
                           "name": "_description",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 50,
-                          "src": "313:12:1",
+                          "referencedDeclaration": 54,
+                          "src": "350:12:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -373,18 +428,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 59,
+                            "id": 63,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 84,
-                            "src": "333:3:1",
+                            "referencedDeclaration": 92,
+                            "src": "370:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 60,
+                          "id": 64,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -392,7 +447,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "333:10:1",
+                          "src": "370:10:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
@@ -414,18 +469,18 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 56,
+                        "id": 60,
                         "name": "Patent",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 41,
-                        "src": "281:6:1",
+                        "src": "318:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_Patent_$41_storage_ptr_$",
                           "typeString": "type(struct Patents.Patent storage pointer)"
                         }
                       },
-                      "id": 61,
+                      "id": 65,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -433,26 +488,26 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "281:68:1",
+                      "src": "318:68:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Patent_$41_memory",
                         "typeString": "struct Patents.Patent memory"
                       }
                     },
-                    "src": "259:90:1",
+                    "src": "296:90:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Patent_$41_storage",
                       "typeString": "struct Patents.Patent storage ref"
                     }
                   },
-                  "id": 63,
+                  "id": 67,
                   "nodeType": "ExpressionStatement",
-                  "src": "259:90:1"
+                  "src": "296:90:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 65,
+                    "id": 69,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -460,15 +515,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "355:12:1",
+                    "src": "392:12:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 64,
+                      "id": 68,
                       "name": "numPatents",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 44,
-                      "src": "355:10:1",
+                      "referencedDeclaration": 48,
+                      "src": "392:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -479,30 +534,84 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 66,
+                  "id": 70,
                   "nodeType": "ExpressionStatement",
-                  "src": "355:12:1"
+                  "src": "392:12:1"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 72,
+                        "name": "numPatents",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48,
+                        "src": "427:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 71,
+                      "name": "PatentAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 45,
+                      "src": "415:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 73,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "415:23:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 74,
+                  "nodeType": "EmitStatement",
+                  "src": "410:28:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 68,
+            "id": 76,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "newPatent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 51,
+              "id": 55,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 50,
+                  "id": 54,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 68,
-                  "src": "218:26:1",
+                  "scope": 76,
+                  "src": "255:26:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -510,10 +619,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 49,
+                    "id": 53,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "218:6:1",
+                    "src": "255:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -523,35 +632,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "217:28:1"
+              "src": "254:28:1"
             },
             "returnParameters": {
-              "id": 52,
+              "id": 56,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "253:0:1"
+              "src": "290:0:1"
             },
-            "scope": 69,
-            "src": "199:173:1",
+            "scope": 77,
+            "src": "236:207:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 70,
-        "src": "25:350:1"
+        "scope": 78,
+        "src": "25:420:1"
       }
     ],
-    "src": "0:375:1"
+    "src": "0:445:1"
   },
   "legacyAST": {
     "absolutePath": "/home/suhavi/Documents/KafkaSummitDemo/patentrail-be/contracts/Patents.sol",
     "exportedSymbols": {
       "Patents": [
-        69
+        77
       ]
     },
-    "id": 70,
+    "id": 78,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -571,9 +680,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 69,
+        "id": 77,
         "linearizedBaseContracts": [
-          69
+          77
         ],
         "name": "Patents",
         "nodeType": "ContractDefinition",
@@ -664,17 +773,59 @@
             ],
             "name": "Patent",
             "nodeType": "StructDefinition",
-            "scope": 69,
+            "scope": 77,
             "src": "47:75:1",
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 45,
+            "name": "PatentAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43,
+                  "indexed": false,
+                  "name": "index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 45,
+                  "src": "144:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "144:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "143:15:1"
+            },
+            "src": "126:33:1"
+          },
+          {
             "constant": false,
-            "id": 44,
+            "id": 48,
             "name": "numPatents",
             "nodeType": "VariableDeclaration",
-            "scope": 69,
-            "src": "126:26:1",
+            "scope": 77,
+            "src": "163:26:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -682,10 +833,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 42,
+              "id": 46,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "126:4:1",
+              "src": "163:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -694,14 +845,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 43,
+              "id": 47,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "151:1:1",
+              "src": "188:1:1",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_0_by_1",
@@ -713,11 +864,11 @@
           },
           {
             "constant": false,
-            "id": 48,
+            "id": 52,
             "name": "patents",
             "nodeType": "VariableDeclaration",
-            "scope": 69,
-            "src": "156:38:1",
+            "scope": 77,
+            "src": "193:38:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -725,30 +876,30 @@
               "typeString": "mapping(uint256 => struct Patents.Patent)"
             },
             "typeName": {
-              "id": 47,
+              "id": 51,
               "keyType": {
-                "id": 45,
+                "id": 49,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "164:4:1",
+                "src": "201:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "156:23:1",
+              "src": "193:23:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patent_$41_storage_$",
                 "typeString": "mapping(uint256 => struct Patents.Patent)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 46,
+                "id": 50,
                 "name": "Patent",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 41,
-                "src": "172:6:1",
+                "src": "209:6:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Patent_$41_storage_ptr",
                   "typeString": "struct Patents.Patent"
@@ -760,14 +911,14 @@
           },
           {
             "body": {
-              "id": 67,
+              "id": 75,
               "nodeType": "Block",
-              "src": "253:119:1",
+              "src": "290:153:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 62,
+                    "id": 66,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -776,26 +927,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 53,
+                        "id": 57,
                         "name": "patents",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 48,
-                        "src": "259:7:1",
+                        "referencedDeclaration": 52,
+                        "src": "296:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patent_$41_storage_$",
                           "typeString": "mapping(uint256 => struct Patents.Patent storage ref)"
                         }
                       },
-                      "id": 55,
+                      "id": 59,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 54,
+                        "id": 58,
                         "name": "numPatents",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 44,
-                        "src": "267:10:1",
+                        "referencedDeclaration": 48,
+                        "src": "304:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -806,7 +957,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "259:19:1",
+                      "src": "296:19:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Patent_$41_storage",
                         "typeString": "struct Patents.Patent storage ref"
@@ -819,12 +970,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 57,
+                          "id": 61,
                           "name": "numPatents",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 44,
-                          "src": "295:10:1",
+                          "referencedDeclaration": 48,
+                          "src": "332:10:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -832,12 +983,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 58,
+                          "id": 62,
                           "name": "_description",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 50,
-                          "src": "313:12:1",
+                          "referencedDeclaration": 54,
+                          "src": "350:12:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -847,18 +998,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 59,
+                            "id": 63,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 84,
-                            "src": "333:3:1",
+                            "referencedDeclaration": 92,
+                            "src": "370:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 60,
+                          "id": 64,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -866,7 +1017,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "333:10:1",
+                          "src": "370:10:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
@@ -888,18 +1039,18 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 56,
+                        "id": 60,
                         "name": "Patent",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 41,
-                        "src": "281:6:1",
+                        "src": "318:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_Patent_$41_storage_ptr_$",
                           "typeString": "type(struct Patents.Patent storage pointer)"
                         }
                       },
-                      "id": 61,
+                      "id": 65,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -907,26 +1058,26 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "281:68:1",
+                      "src": "318:68:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Patent_$41_memory",
                         "typeString": "struct Patents.Patent memory"
                       }
                     },
-                    "src": "259:90:1",
+                    "src": "296:90:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Patent_$41_storage",
                       "typeString": "struct Patents.Patent storage ref"
                     }
                   },
-                  "id": 63,
+                  "id": 67,
                   "nodeType": "ExpressionStatement",
-                  "src": "259:90:1"
+                  "src": "296:90:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 65,
+                    "id": 69,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -934,15 +1085,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "355:12:1",
+                    "src": "392:12:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 64,
+                      "id": 68,
                       "name": "numPatents",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 44,
-                      "src": "355:10:1",
+                      "referencedDeclaration": 48,
+                      "src": "392:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -953,30 +1104,84 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 66,
+                  "id": 70,
                   "nodeType": "ExpressionStatement",
-                  "src": "355:12:1"
+                  "src": "392:12:1"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 72,
+                        "name": "numPatents",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48,
+                        "src": "427:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 71,
+                      "name": "PatentAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 45,
+                      "src": "415:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 73,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "415:23:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 74,
+                  "nodeType": "EmitStatement",
+                  "src": "410:28:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 68,
+            "id": 76,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "newPatent",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 51,
+              "id": 55,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 50,
+                  "id": 54,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 68,
-                  "src": "218:26:1",
+                  "scope": 76,
+                  "src": "255:26:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -984,10 +1189,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 49,
+                    "id": 53,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "218:6:1",
+                    "src": "255:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -997,26 +1202,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "217:28:1"
+              "src": "254:28:1"
             },
             "returnParameters": {
-              "id": 52,
+              "id": 56,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "253:0:1"
+              "src": "290:0:1"
             },
-            "scope": 69,
-            "src": "199:173:1",
+            "scope": 77,
+            "src": "236:207:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 70,
-        "src": "25:350:1"
+        "scope": 78,
+        "src": "25:420:1"
       }
     ],
-    "src": "0:375:1"
+    "src": "0:445:1"
   },
   "compiler": {
     "name": "solc",
@@ -1024,14 +1229,34 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0x3b3da476a43345b56777430647879d63098eb3f12f5f0239b62e655da0eb826d": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "PatentAdded",
+          "type": "event"
+        },
+        "0xe4d1601483f14fd363bcb881847d666123c50d69d92ccb76c7f2a0cb0405a507": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "PatentAdded",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x9ffFEB2c2112A2527E87eE45A275034cf76201e1",
-      "transactionHash": "0xd55683edb02304b888eceebfb6571547f282949fe54c237890772e282819ce3b"
+      "address": "0x3Cce2f53E21B3215EFe9f8c18AA7007082b11c6E",
+      "transactionHash": "0x1a9b87e5551b8ce86f7ca6473edc51c66907da5883461b11b8e8c46f3f18b179"
     }
   },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2021-06-04T04:19:24.067Z",
+  "updatedAt": "2021-06-07T16:19:14.124Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
