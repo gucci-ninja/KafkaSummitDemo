@@ -9,7 +9,6 @@ class Patents extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h4>Hi, {this.props.account}</h4>
               <Header></Header>
             </div>
           </div>
@@ -19,13 +18,10 @@ class Patents extends Component {
                 {this.props.patents.map(t => (
                   <li key={t.id} className="list-group-item">
                     {t.description}
-                    <button
-                      className="float-right btn btn-danger btn-sm"
-                      style={{ marginLeft: 10 }}
-                      // onClick={() => dispatch({ type: "COMPLETE", payload: t })}
-                    >
-                      Complete
-                    </button>
+                    { t.verified || t.id ?
+                        <span class="float-right badge rounded-pill bg-success text-light">Verified</span>
+                      : <span class="float-right badge rounded-pill bg-primary text-light">Block Added</span>
+                    }
                   </li>
                 ))}
               </ul>
