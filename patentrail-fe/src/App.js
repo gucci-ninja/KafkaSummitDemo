@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Web3 from 'web3';
 import Patents from './components/Patents'
 import PatentForm from './components/PatentForm'
 
@@ -9,8 +8,6 @@ class App extends Component {
     this.state = {
       account: '',
       patents: [],
-      loading: true,
-      lastBlock: 0,
       intervalId: 0
     }
   }
@@ -19,7 +16,6 @@ class App extends Component {
     this.setUpWeb3();
     const intervalId = setInterval(() => this.getPatents(), 2000);
     this.setState({ intervalId })
-  
   }
 
   componentWillUnmount() {
@@ -27,19 +23,8 @@ class App extends Component {
   }
 
   async setUpWeb3() {
-    // connect to blockchain via websockets
-    const web3 = new Web3('ws://localhost:7545');
-    const accounts = await web3.eth.getAccounts();
+    const accounts = await window.ethereum.enable();
     this.setState({ account: accounts[0] })
-
-    // listen for new blocks on the chain to update patents
-    web3.eth.subscribe('newBlockHeaders')
-      .on("data", (data) => {
-        if (data.number > this.state.lastBlock) {
-          this.getPatents();
-          this.setState({ lastBlock: data.number })
-        }
-      })
   }
 
   getPatents() {
