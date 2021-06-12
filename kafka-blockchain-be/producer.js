@@ -1,4 +1,3 @@
-
 const kafka = require('kafka-node');
 const client = new kafka.KafkaClient({kafkaHost: 'localhost:29092'});
 const Producer = kafka.Producer;
@@ -32,6 +31,25 @@ module.exports.newPatent = function (patent) {
   });
 }
 
+module.exports.syncBlocks = async function () {
+  const numPatents = await PatentContract.methods.numPatents.call().call();
+  for (var i = 0; i < numPatents; i++) {
+    const patent = await PatentContract.methods.patents(i).call();
+    const buffer = new Buffer.from(JSON.stringify(patent));
+    const payload = [
+      { topic: 't1', messages: buffer, partition: 0 }
+    ];
+    
+    producer.send(payload, function(error, data) {
+      if (error) {
+        console.error(error);
+      } else {
+        publishVerified(i-1)
+      }
+    });
+  }
+}
+
 // Add patent to blockchain and once receipt is delivered, publish to second topic
 async function addToBlockchain(patent) {
   PatentContract.methods
@@ -40,14 +58,16 @@ async function addToBlockchain(patent) {
       from: patent.sender,
       gas: 6721975
     })
-    .on('receipt', function(){
-      publishVerified()
+    .on('receipt', async function(receipt){
+      const numPatents = await PatentContract.methods.numPatents.call().call();
+      publishVerified(numPatents-1)
     });
 }
 
-function publishVerified() {
+// Publish that transaction i has been verified by comparing its patent ID to offset
+function publishVerified(i) {
   const payload = [
-    { topic: 't2', messages: "Verified", partition: 0 }
+    { topic: 't2', messages: i, partition: 0 }
   ];
   
   producer.send(payload, function(error, data) {
@@ -58,6 +78,3 @@ function publishVerified() {
     }
   });
 }
-
-
-

@@ -26,9 +26,17 @@ client.createTopics(topicsToCreate, (error, result) => {
 });
 
 var patents = [];
-var verified = [];
 
 producer.initializeContract()
+const offset = new kafka.Offset(client);
+
+offset.fetch([
+  { topic: 't1', partition: 0, time: -1, maxNum: 1 }
+], function (err, data) {
+  if (data && data['t1'][0] == 0) {
+    producer.syncBlocks();
+  }
+});
 
 const Consumer = kafka.Consumer;
 const consumer = new Consumer(
@@ -39,13 +47,14 @@ const consumer = new Consumer(
     
 consumer.on('message', function (message) {
   if(message.topic === "t2") {
-    verified.push(true);
-    patents.map((el, i) => el['verified'] = verified[i])
+    patents[parseInt(message.value)].verified = true;
   } else {
     var decodedMessage = JSON.parse(message.value.toString());
     var patent = {
+      id: decodedMessage.offset,
       description: decodedMessage.description,
-      sender: decodedMessage.sender
+      sender: decodedMessage.sender,
+      verified: false
     }
     patents.push(patent);
   }
@@ -53,12 +62,7 @@ consumer.on('message', function (message) {
 
 app.post('/patent', (req, res) => {
   const patent = req.body;
-  producer.newPatent(patent).then(() => {
-    res.status(200).send('New patent added to blockchain');
-  })
-  .catch(err => {
-    res.status(400).send('Failed to add patent.')
-  });
+  producer.newPatent(patent);
 });
 
 app.get('/patents', function(req, res) {
