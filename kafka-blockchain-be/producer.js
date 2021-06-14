@@ -1,4 +1,5 @@
 const kafka = require('kafka-node');
+const constants = require('./constants.js');
 const client = new kafka.KafkaClient({kafkaHost: 'localhost:29092'});
 const Producer = kafka.Producer;
 const producer = new Producer(client);
@@ -37,7 +38,7 @@ module.exports.syncBlocks = async function () {
     const patent = await PatentContract.methods.patents(i).call();
     const buffer = new Buffer.from(JSON.stringify(patent));
     const payload = [
-      { topic: 't1', messages: buffer, partition: 0 }
+      { topic: constants.UNVERIFIED_TOPIC, messages: buffer, partition: 0 }
     ];
     
     producer.send(payload, function(error, data) {
@@ -67,7 +68,7 @@ async function addToBlockchain(patent) {
 // Publish that transaction i has been verified by comparing its patent ID to offset
 function publishVerified(i) {
   const payload = [
-    { topic: 't2', messages: i, partition: 0 }
+    { topic: constants.VERIFIED_TOPIC, messages: i, partition: 0 }
   ];
   
   producer.send(payload, function(error, data) {
