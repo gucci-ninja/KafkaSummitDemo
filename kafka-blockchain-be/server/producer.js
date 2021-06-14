@@ -32,25 +32,6 @@ module.exports.newPatent = function (patent) {
   });
 }
 
-module.exports.syncBlocks = async function () {
-  const numPatents = await PatentContract.methods.numPatents.call().call();
-  for (var i = 0; i < numPatents; i++) {
-    const patent = await PatentContract.methods.patents(i).call();
-    const buffer = new Buffer.from(JSON.stringify(patent));
-    const payload = [
-      { topic: constants.UNVERIFIED_TOPIC, messages: buffer, partition: 0 }
-    ];
-    
-    producer.send(payload, function(error, data) {
-      if (error) {
-        console.error(error);
-      } else {
-        publishVerified(i-1)
-      }
-    });
-  }
-}
-
 // Add patent to blockchain and once receipt is delivered, publish to second topic
 async function addToBlockchain(patent) {
   PatentContract.methods

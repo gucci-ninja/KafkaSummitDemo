@@ -28,17 +28,6 @@ client.createTopics(topicsToCreate, (error, result) => {
 });
 
 producer.initializeContract()
-
-const offset = new kafka.Offset(client);
-
-offset.fetch([
-  { topic: constants.UNVERIFIED_TOPIC, partition: 0, time: -1, maxNum: 1 }
-], function (err, data) {
-  if (data && data[constants.UNVERIFIED_TOPIC][0] == 0) {
-    producer.syncBlocks();
-  }
-});
-
 consumer.start(client);
 
 app.post('/patent', (req, res) => {
