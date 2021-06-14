@@ -6,7 +6,7 @@ const producer = new Producer(client);
 
 var Web3 = require("web3");
 const web3 = new Web3('ws://localhost:7545');
-const PatentStore = require("../patentrail-be/build/contracts/Patents.json");
+const PatentStore = require("../../smart-contracts/build/contracts/Patents.json");
 var PatentContract;
 
 // Get contract address and connect to the deployed contract
@@ -19,17 +19,8 @@ module.exports.initializeContract = async function () {
 // Publish new patent to topic and add it to the blockchain
 module.exports.newPatent = function (patent) {
   const buffer = new Buffer.from(JSON.stringify(patent));
-  const payload = [
-    { topic: 't1', messages: buffer, partition: 0 }
-  ];
-  
-  producer.send(payload, function(error, data) {
-    if (error) {
-      console.error(error);
-    } else {
-      addToBlockchain(patent)
-    }
-  });
+  publish(buffer, constants.UNVERIFIED_TOPIC);
+  addToBlockchain(patent);
 }
 
 // Add patent to blockchain and once receipt is delivered, publish to second topic
@@ -42,14 +33,13 @@ async function addToBlockchain(patent) {
     })
     .on('receipt', async function(receipt){
       const numPatents = await PatentContract.methods.numPatents.call().call();
-      publishVerified(numPatents-1)
+      publish(numPatents-1, constants.VERIFIED_TOPIC)
     });
 }
 
-// Publish that transaction i has been verified by comparing its patent ID to offset
-function publishVerified(i) {
+function publish(messages, topic) {
   const payload = [
-    { topic: constants.VERIFIED_TOPIC, messages: i, partition: 0 }
+    { topic: topic, messages: messages, partition: 0 }
   ];
   
   producer.send(payload, function(error, data) {

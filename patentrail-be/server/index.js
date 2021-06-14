@@ -10,7 +10,6 @@ patents.initializeContract()
 
 app.post('/patent', (req, res) => {
     const patent = req.body;
-    console.log(patent);
     patents.newPatent(patent).then(() => {
         res.status(200).send('New patent added to blockchain');
     })

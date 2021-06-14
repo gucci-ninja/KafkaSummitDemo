@@ -1,4 +1,4 @@
-const PatentStore = require("../build/contracts/Patents.json");
+const PatentStore = require("../../smart-contracts/build/contracts/Patents.json");
 var Web3 = require("web3");
 
 const web3 = new Web3('ws://localhost:7545');
@@ -7,7 +7,7 @@ var PatentContract;
 module.exports.initializeContract = async function () { 
   const networkId = await web3.eth.net.getId()
   const deployedAddress = PatentStore.networks[networkId].address
-  console.log(deployedAddress);
+  console.log("Contract address: ", deployedAddress);
   PatentContract = new web3.eth.Contract(PatentStore.abi, deployedAddress);
 }
 
@@ -22,8 +22,6 @@ module.exports.getPatents = async function () {
 }
 
 module.exports.newPatent = async function (patent) {
-  console.log(PatentContract);
-
     PatentContract.methods
     .newPatent(patent.description)
     .send({ 
@@ -31,6 +29,6 @@ module.exports.newPatent = async function (patent) {
       gas: 6721975
     })
     .on('receipt', function(){
-        console.log('transaction sent')
+        console.log('Patent added to blockchain')
     });
 }

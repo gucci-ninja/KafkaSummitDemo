@@ -24,10 +24,10 @@ const topicsToCreate = [
 ]
 
 client.createTopics(topicsToCreate, (error, result) => {
-  console.log('Created topics')
+  console.log('Created topics');
 });
 
-producer.initializeContract()
+producer.initializeContract();
 consumer.start(client);
 
 app.post('/patent', (req, res) => {
