@@ -50,3 +50,13 @@ function publish(messages, topic) {
     }
   });
 }
+
+module.exports.syncBlocks = async function () {
+  const numPatents = await PatentContract.methods.numPatents.call().call();
+  for (var i = 0; i < numPatents; i++) {
+    const patent = await PatentContract.methods.patents(i).call();
+    const buffer = new Buffer.from(JSON.stringify(patent));
+    publish(buffer, constants.UNVERIFIED_TOPIC);
+    publish(i, constants.VERIFIED_TOPIC);
+  }
+}
